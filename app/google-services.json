@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "205497459126",
+    "project_id": "pingonedemos",
+    "storage_bucket": "pingonedemos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205497459126:android:af28234eaf5ce5a9916117",
+        "android_client_info": {
+          "package_name": "com.pingidentity.emeasa.mobilesample.digico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205497459126-0sk18v6klmuvf3jgbmc816urqial2bel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt2h6tprjPtQcFBPU61hiqnOzVwydDASE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205497459126-0sk18v6klmuvf3jgbmc816urqial2bel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

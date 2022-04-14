@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DigiCo</string>
+
+
+    <!-- FINGERPRINT SECTION -->
+    <string name="fingerprint_description">We need your fingerprint to continue</string>
+    <string name="fingerprint_hint">Please touch the fingerprint sensor</string>
+
+    <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+    <string name="fingerprint_success">Fingerprint recognised</string>
+
+    <string name="fingerprint_description_icon">Fingerprint icon</string>
+    <string name="user_choose_hint">Select the user to sign on as.</string>
+
+    <string name="auth_please_authenticate">Please authenticate</string>
+
+</resources>
