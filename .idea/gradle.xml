@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/My Drive/projects/ping-custom-apps/digico-sample-mobile-app" />
+            <option value="$USER_HOME$/My Drive/projects/ping-custom-apps/digico-sample-mobile-app/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

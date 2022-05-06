@@ -12,9 +12,10 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="269dp"
         android:layout_height="92dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_horizontal"
@@ -47,6 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_conversion_absoluteHeight="0dp"
             tools:layout_conversion_absoluteWidth="0dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -144,7 +146,7 @@
         android:layout_height="0dp"
         android:paddingHorizontal="5dp"
         android:paddingVertical="5dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,9 +157,10 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/identityLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -176,6 +179,16 @@
                 tools:layout_conversion_absoluteWidth="0dp" />
 
             <Button
+                android:id="@+id/qrCodeAuthButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="QR - CODE"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonLogout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
                 android:id="@+id/buttonLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,41 +204,85 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/balanceLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-            tools:layout_editor_absoluteX="5dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/identityLayout">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Balance"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="78.655 EUR"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+3.59%"
+                android:textColor="#4CAF50"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balanceLayout">
 
             <Button
-                android:id="@+id/transact"
+                android:id="@+id/pay"
                 android:layout_width="250dp"
                 android:layout_height="75dp"
-                android:text="Transact"
+                android:text="Pay"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/save"
+                android:id="@+id/credit"
                 android:layout_width="250dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="8dp"
-                android:text="Save"
+                android:text="Credit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transact" />
+                app:layout_constraintTop_toBottomOf="@+id/pay" />
 
             <Button
-                android:id="@+id/authenticateButton"
+                android:id="@+id/trade"
                 android:layout_width="250dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="8dp"
-                android:text="Authenticate"
+                android:text="Trade"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/save" />
+                app:layout_constraintTop_toBottomOf="@+id/credit" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -250,7 +307,7 @@
         android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="v1.0"
+        android:text="v1.0.1"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

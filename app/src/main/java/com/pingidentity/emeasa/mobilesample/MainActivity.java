@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.navigation.ui.AppBarConfiguration;
-
 import com.pingidentity.emeasa.mobilesample.databinding.ActivityMainBinding;
 import com.pingidentity.emeasa.mobilesample.model.SKResponse;
 import com.pingidentity.pingidsdkv2.PingOne;
@@ -97,7 +95,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Button authenticateButton = this.findViewById(R.id.authenticateButton);
+        Button authenticateButton = this.findViewById(R.id.qrCodeAuthButton);
         authenticateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

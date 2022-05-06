@@ -10,7 +10,7 @@
     <color name="orange">#FF9718</color>
     <color name="transparent_black">#74121212</color>
     <color name="green">#50b848</color>
-
+    <color name="light_blue">#1199fa</color>
 
     <!-- FINGERPRINT SECTION -->
     <color name="fingerprint_warning_color">#f4511e</color>
