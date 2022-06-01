@@ -106,8 +106,8 @@ public class MainActivity extends BaseActivity {
 
     private void setUIFields () {
         nextButton = (Button) this.findViewById(R.id.buttonNext);
-        input1 = (EditText) findViewById(R.id.input1);
-        input2 = ((EditText) findViewById(R.id.input2));
+        input1 = (EditText) findViewById(R.id.username);
+        input2 = ((EditText) findViewById(R.id.password));
     }
 
     private String getIntentChallenge() {
@@ -146,37 +146,12 @@ public class MainActivity extends BaseActivity {
     }
 
     public void updateFlowUI(JSONObject screen) throws JSONException {
-        Log.i(TAG, "UpdateFlowUI with screen " + screen.toString());
-        JSONObject properties = screen.getJSONObject("properties");
-        updateTitle(properties);
-        input1.setVisibility(View.VISIBLE);
-        nextButton.setVisibility(View.VISIBLE);
-        input1.setText("");
-        input1.requestFocus();
-        boolean secret = properties.getJSONObject("formFieldsList").getJSONArray("value").getJSONObject(0).getBoolean("hashedVisibility");
-
-        if (properties.getJSONObject("formFieldsList").getJSONArray("value").length() > 1) {
-
-            input2.setHint(properties.getJSONObject("formFieldsList").getJSONArray("value").getJSONObject(1).getString("displayName"));
-            input1.setHint(properties.getJSONObject("formFieldsList").getJSONArray("value").getJSONObject(0).getString("displayName"));
-            input1.requestFocus();
-            secret = properties.getJSONObject("formFieldsList").getJSONArray("value").getJSONObject(1).getBoolean("hashedVisibility");
-            if (secret)
-                input2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            else
-                input2.setTransformationMethod(null);
-            input2.setVisibility(View.VISIBLE);
-        } else {
-            input2.setVisibility(View.GONE);
-        }
-        nextButton.setText(properties.getJSONObject("nextButtonText").getString("value"));
-        updateView (MODE_START);
+         updateView (MODE_START);
     }
 
     public void updateFlowUIWithMessage(JSONObject screen) throws JSONException {
         Log.i(TAG, "updateFlowUIWithMessage with screen " + screen.toString());
         JSONObject properties = screen.getJSONObject("properties");
-        updateTitle(properties);
         input1.setVisibility(View.GONE);
         input2.setVisibility(View.GONE);
         input1.setText("");
@@ -185,11 +160,6 @@ public class MainActivity extends BaseActivity {
         nextButton.setText(properties.getJSONObject("button").getString("displayName"));
     }
 
-    protected void updateTitle (JSONObject properties) throws JSONException {
-        ((TextView) findViewById(R.id.lblTitle)).setText(properties.getJSONObject("title").getString("value"));
-        ((TextView) findViewById(R.id.lblDescription)).setText(properties.getJSONObject("bodyHeaderText").getString("value"));
-        findViewById(R.id.lblDescription).setVisibility(View.VISIBLE);
-    }
 
     public void showProgressBar () {
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);

@@ -35,6 +35,7 @@ public class SKHelper {
 
     private static String TAG = "SKHelper";
 
+
     public void startFlow(MainActivity activity, JSONObject input, String flowId) {
         Log.i(TAG, "startFlow " + flowId);
         callingActivity = activity;

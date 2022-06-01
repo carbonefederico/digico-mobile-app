@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="5dp"
         android:paddingVertical="5dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
             android:id="@+id/lblTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Login"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:maxLines="14"
             android:scrollbars="vertical"
-            android:text="Description"
+            android:text="Input your username and password"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,11 +96,12 @@
             tools:layout_conversion_absoluteWidth="0dp" />
 
         <EditText
-            android:id="@+id/input1"
+            android:id="@+id/username"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:background="@color/white"
+            android:hint="Username"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,16 +111,18 @@
             tools:layout_conversion_absoluteWidth="0dp" />
 
         <EditText
-            android:id="@+id/input2"
+            android:id="@+id/password"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input1"
+            app:layout_constraintTop_toBottomOf="@+id/username"
             tools:layout_conversion_absoluteHeight="0dp"
             tools:layout_conversion_absoluteWidth="0dp" />
 
@@ -133,7 +136,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input2"
+            app:layout_constraintTop_toBottomOf="@+id/password"
             tools:layout_conversion_absoluteHeight="0dp"
             tools:layout_conversion_absoluteWidth="0dp" />
 
@@ -146,7 +149,7 @@
         android:layout_height="0dp"
         android:paddingHorizontal="5dp"
         android:paddingVertical="5dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
