@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,7 +17,6 @@ import com.pingidentity.emeasa.mobilesample.databinding.ActivityMainBinding;
 import com.pingidentity.emeasa.mobilesample.model.SKResponse;
 import com.pingidentity.pingidsdkv2.PingOne;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends BaseActivity {
@@ -35,8 +33,8 @@ public class MainActivity extends BaseActivity {
     private static int MODE_START = 1;
     private static int MODE_LOGGED_IN = 2;
 
-    private EditText input1;
-    private EditText input2;
+    private EditText usernameInput;
+    private EditText passwordInput;
     private Button nextButton;
 
     @Override
@@ -58,56 +56,37 @@ public class MainActivity extends BaseActivity {
         }
 
         Button startButton = (Button) this.findViewById(R.id.buttonStart);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "Start - onClick");
-                try {
-                    showProgressBar();
-                    JSONObject flowInput = new JSONObject();
-                    String mobilePayload = PingOne.generateMobilePayload(MainActivity.this);
-                    Log.i(TAG, "Mobile Payload genearated " + mobilePayload);
-                    flowInput.put("mobilePayload", mobilePayload);
-                    helper.startFlow(MainActivity.this, flowInput, Consts.MOBILE_PAIRING_FLOW);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
+        startButton.setOnClickListener(view -> {
+            Log.i(TAG, "Start - onClick");
+            updateView(MODE_START);
         });
 
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "Next - onClick");
-                showProgressBar();
-                try {
-                    hideKeyboard(MainActivity.this);
-                    String[] formInputs = new String[5];
-                    formInputs[0] = input1.getText().toString().trim();
-                    formInputs[1] = input2.getText().toString().trim ();
-                    Log.i(TAG, "formInput " + formInputs);
-                    helper.continueFlow(MainActivity.this, formInputs);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        nextButton.setOnClickListener(view -> {
+            Log.i(TAG, "Next - onClick");
+            showProgressBar();
+            try {
+                hideKeyboard(MainActivity.this);
+                JSONObject flowInput = new JSONObject();
+                String mobilePayload = PingOne.generateMobilePayload(MainActivity.this);
+                Log.i(TAG, "Mobile Payload genearated " + mobilePayload);
+                flowInput.put("mobilePayload", mobilePayload);
+                flowInput.put("username", usernameInput.getText().toString().trim());
+                flowInput.put("password", passwordInput.getText().toString().trim ());
+                helper.postRequest(Consts.MOBILE_PAIRING_FLOW,flowInput,MainActivity.this);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 
         Button authenticateButton = this.findViewById(R.id.qrCodeAuthButton);
-        authenticateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScanQRActivity.class));
-            }
-        });
+        authenticateButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,ScanQRActivity.class)));
     }
 
     private void setUIFields () {
         nextButton = (Button) this.findViewById(R.id.buttonNext);
-        input1 = (EditText) findViewById(R.id.username);
-        input2 = ((EditText) findViewById(R.id.password));
+        usernameInput = (EditText) findViewById(R.id.username);
+        passwordInput = ((EditText) findViewById(R.id.password));
     }
 
     private String getIntentChallenge() {
@@ -144,22 +123,6 @@ public class MainActivity extends BaseActivity {
             findViewById(R.id.loggedin_layout).setVisibility(View.VISIBLE);
         }
     }
-
-    public void updateFlowUI(JSONObject screen) throws JSONException {
-         updateView (MODE_START);
-    }
-
-    public void updateFlowUIWithMessage(JSONObject screen) throws JSONException {
-        Log.i(TAG, "updateFlowUIWithMessage with screen " + screen.toString());
-        JSONObject properties = screen.getJSONObject("properties");
-        input1.setVisibility(View.GONE);
-        input2.setVisibility(View.GONE);
-        input1.setText("");
-        input2.setText("");
-        nextButton.setVisibility(View.VISIBLE);
-        nextButton.setText(properties.getJSONObject("button").getString("displayName"));
-    }
-
 
     public void showProgressBar () {
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
@@ -212,7 +175,7 @@ public class MainActivity extends BaseActivity {
                     Log.i(TAG, "Adding challenge " + challenge);
                     flowInput.put("challenge", challenge);
                 }
-                helper.startFlow(MainActivity.this, flowInput, Consts.MOBILE_AUTH_FLOW);
+                helper.postRequest( Consts.MOBILE_AUTH_FLOW, flowInput, MainActivity.this);
             } catch (Exception e) {
                 e.printStackTrace();
             }

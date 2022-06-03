@@ -13,5 +13,6 @@
     <string name="user_choose_hint">Select the user to sign on as.</string>
 
     <string name="auth_please_authenticate">Please authenticate</string>
+    <string name="version">v1.0.2</string>
 
 </resources>
